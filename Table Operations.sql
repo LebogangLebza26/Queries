@@ -1,74 +1,39 @@
 -- Databricks notebook source
--- Creating a database in databricks
-CREATE CATALOG IF NOT EXISTS june_intake;
+-- The function called CURRENT_DATE() gives us today's date
+SELECT CURRENT_DATE() AS today_dt;
 
-USE CATALOG june_intake;
+-- The function called CURRENT_TIMESTAMP gives me the current date and time
+SELECT CURRENT_TIMESTAMP() AS dt_time;
 
-CREATE SCHEMA IF NOT EXISTS students_profile;
+-- Converts a STRING(words) into a date (Ensure that a date is read as a date)
+SELECT TO_DATE('2026-07-17') AS dt;
 
--- To drop is to delete : this code is to delete the schema
-DROP SCHEMA students_profile;
+-- Converts a date into a string
+SELECT TO_CHAR(TO_DATE('2026-07-17'),'yyyyMM') AS  Month_id; 
+SELECT TO_CHAR(TO_DATE('2026-07-17'),'yyyy') AS  year_value; 
+SELECT TO_CHAR(TO_DATE('2026-07-17'),'dd') AS  day_value; 
+SELECT TO_CHAR(TO_DATE('2026-07-17'),'MM') AS  Month_value; 
 
--- This code is used to creat a schema within a database
-CREATE SCHEMA IF NOT EXISTS students;
+-- The system recognizes the date format in this way 'yyyy-MM-dd'
 
--- This code is to create a table in our database and given schema
-CREATE OR REPLACE TABLE june_intake.students.profiles (
-    student_id INT,
-    name STRING,
-    surname STRING,
-    age INT,
-    email STRING,
-    registration_DT DATE
-);
+-- DATEDIFF(end_date,start_date)
+-- end_date - start_date = value 
+SELECT DATEDIFF('2026-07-05','2026-07-01') AS dt_difference;
 
-SELECT *
-FROM june_intake.students.profiles;
+-- DATE_ADD(date, number_of_days)
+SELECT DATE_ADD('2026-07-05',5 ) AS add_5_days;
 
--- Inserting Values into the table that we have created
-INSERT INTO june_intake.students.profiles
- VALUES 
-    (101,'Rochester', 'Jones', 28, 'rochester@google.com', '2019-06-05'),
-    (102,'Sive', 'Magazi', 33, 'sive@phalaphala.com', '1912-01-01'),
-    (103,'Cassper', 'Zuma', 73, 'czuma@kandla.com', '2020-01-12'),
-    (104,'Mbali', 'Hlapo', 41, 'mbali@cleaaning.com', '2010-01-12')
-;
+-- DATE_SUB(date, number_of_days)
+SELECT DATE_SUB('2026-07-05', 2) AS removing_2_days;
 
-SELECT *
-FROM june_intake.students.profiles;-- Creating a database in databricks
-CREATE CATALOG IF NOT EXISTS june_intake;
+SELECT YEAR('2026-07-05') AS year_dt; -- Extract the year from the date
+SELECT DAY('2026-07-05') AS day_dt; -- Extract the day from the date
+SELECT MONTH('2026-07-05') AS month_dt; -- Extract the day from the date
 
-USE CATALOG june_intake;
+SELECT DAYNAME('2026-07-05') AS day_name; -- Tells you the day name
+SELECT MONTHNAME('2026-07-05') AS month_name; -- Tells you the month name
 
-CREATE SCHEMA IF NOT EXISTS students_profile;
+SELECT DAYOFWEEK('2026-07-05') AS day_name; -- Tells you the day name
 
--- To drop is to delete : this code is to delete the schema
-DROP SCHEMA students_profile;
-
--- This code is used to creat a schema within a database
-CREATE SCHEMA IF NOT EXISTS students;
-
--- This code is to create a table in our database and given schema
-CREATE OR REPLACE TABLE june_intake.students.profiles (
-    student_id INT,
-    name STRING,
-    surname STRING,
-    age INT,
-    email STRING,
-    registration_DT DATE
-);
-
-SELECT *
-FROM june_intake.students.profiles;
-
--- Inserting Values into the table that we have created
-INSERT INTO june_intake.students.profiles
- VALUES 
-    (101,'Rochester', 'Jones', 28, 'rochester@google.com', '2019-06-05'),
-    (102,'Sive', 'Magazi', 33, 'sive@phalaphala.com', '1912-01-01'),
-    (103,'Cassper', 'Zuma', 73, 'czuma@kandla.com', '2020-01-12'),
-    (104,'Mbali', 'Hlapo', 41, 'mbali@cleaaning.com', '2010-01-12')
-;
-
-SELECT *
-FROM june_intake.students.profiles;
+-- ADD_MONTHS(date, number_of_months)
+SELECT ADD_MONTHS('2026-07-05', 2) AS adding_2_months; -- add months to the date
