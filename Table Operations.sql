@@ -128,17 +128,3 @@ SELECT
   *
 FROM
   june_intake.student_profiles.student_data;
-
-ALTER TABLE
-  june_intake.student_profiles.student_data
-SET TBLPROPERTIES
-  (
-    'delta.columnMapping.mode' = 'name',
-    'delta.minReaderVersion' = '2',
-    'delta.minWriterVersion' = '5'
-  );
-
-ALTER TABLE
-  june_intake.student_profiles.student_data
-DROP COLUMN
-  registration_DT;
